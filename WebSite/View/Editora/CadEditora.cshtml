@@ -1,0 +1,75 @@
+﻿@using WebSite.App_Code.Model;
+@using WebSite.App_Code.BO;
+
+@{
+    Page.Title = " Cadastro de Editora";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    if (IsPost)
+    {
+
+        Editora ed = new Editora();
+        ed.Nome = Request.Form["txtNomeEditora"];
+        ed.Local = Request.Form["txtLocal"];
+        ed.ListaLivro = null;
+
+        bool sucesso =  new EditoraBO().Gravar(ed);
+
+        if (sucesso)
+        {
+            <div class="alert alert-success" role="alert"> Dados Inserido com Sucesso!! </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert" >   Erro ao gravar Editora</div>
+        }
+    }
+
+
+
+
+}
+
+<div class="row">
+    <h1>   Cadastro de Editora  </h1>
+
+</div>
+
+<form method="post" action="" name="frmCadEditora"  onsubmit="return validarEditora()"  >
+
+    <div class="row">
+
+        <div class="col-6">
+              <label>Nome:</label>
+             <input type="text" class="form-control" name="txtNomeEditora" id="txtNomeEditora" />
+        </div>
+
+        <div class="col-6">
+            <label>Local:</label>
+            <input type="text" class="form-control" name="txtLocal" id="txtLocal" />
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-6" >
+            <label> Alunos: </label>
+            
+            <select id="slAlunos" class="form-control">
+                <option value="0"> Selecione...  </option>
+            </select>
+
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            
+            <input type="submit"  class="btn btn-success"  name="btnSalvar" id="btnSalvar" value="SALVAR" />
+                
+        </div>
+    </div>
+
+</form>

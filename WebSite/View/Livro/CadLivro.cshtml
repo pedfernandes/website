@@ -1,0 +1,68 @@
+﻿@{
+    Page.Title = "Cadastro de Livros";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+
+}
+
+<div class="row">
+    <h1>   Cadastro de Livro  </h1>
+
+</div>
+
+
+<form method="post" name="frmCadLivro" action="">
+    <div class="row">
+        <div class="col-6">
+            <label>Nome:</label>
+            <input type="text" name="txtNome" id="txtNome" class="form-control" />
+
+        </div>
+
+        <div class="col-6">
+
+            <label>Data de Publicação:</label>
+            <input type="date" name="txtDataPublicacao" id="txtDataPublicacao" class="form-control" />
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <value> Aluno: </value>
+            <input type="text" name="txtAluno" id="txtAluno" class="form-control" />
+        </div>
+
+        <div class="col-6">
+
+
+            <label> Editora: </label>
+            <input type="text" name="txtEditora" id="txtEditora" class="form-control" />
+
+        </div>
+
+
+    </div>
+
+
+
+    </br>
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <input type="submit" id="btnSalvar" value="SALVAR" class="btn btn btn-success" />
+
+        </div>
+
+    </div>
+
+
+</form>

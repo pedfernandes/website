@@ -1,0 +1,92 @@
+﻿
+@using WebSite.App_Code.BO;
+@using WebSite.App_Code.Model;
+
+@{ 
+
+
+    Page.Title = "Alunos Cadastrados";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+
+    IList<Aluno> ListaAlunos = new AlunoBO().listaAlunos();
+
+}
+
+
+<div class="row">
+
+    <div class="col-12">
+        <h1> Alunos Cadastrados</h1>
+        
+
+
+
+    </div>
+</div>
+
+
+    <div class="row">
+        <div class="col-12">
+
+            <table class="table table-bordered table-hover" >
+                <tr>
+                    <th>Nome</th>
+                    <th>Matricula</th>
+                    <th>CPF </th>
+                    <th>ACÕES</th>
+
+                </tr>
+
+                @foreach (var item in ListaAlunos)
+                {
+                    <tr id="@item.AlunoID">
+                        <td> @item.Nome  </td>
+                        <td> @item.Matricula   </td>
+                        <td> @item.Cpf  </td>
+                        <td> <a href="~/View/Aluno/AltAluno.cshtml?alunoID=@item.AlunoID" class="btn btn-info" >  Alterar </a>    
+                             <a href="#" class="btn btn-danger" onclick="ExcluirAJAX('@item.AlunoID');" >  Excluir </a>    
+                         </td>
+                        
+                       
+
+                    </tr>
+                }
+
+              
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+<div class="row">
+
+   <div class="col-12">
+       <a href="~/View/Aluno/CadAluno.cshtml" class="btn btn-info"> Novo Aluno</a>
+
+   </div>
+
+</div>
+
+<script>
+    function ExcluirAJAX(id) {
+        var xhttp = new XMLHttpRequest()
+        var apagar = confirm("Deseja excluir o registro?")
+        if (apagar == true) {
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //Ações na pagina
+                    var linha = document.getElementById(id);
+                    linha.parentNode.removeChild(linha);
+                }
+                
+            };
+            xhttp.open("GET", "ExcluirAluno.cshtml?alunoID=" + id, true);
+            xhttp.send();
+        }
+  
+    }
+</script>

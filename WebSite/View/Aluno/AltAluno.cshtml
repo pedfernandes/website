@@ -1,0 +1,105 @@
+﻿
+@using WebSite.App_Code.Model;
+@using WebSite.App_Code.BO;
+
+@{
+
+    Page.Title = "Alterar Alunos Cadastrados";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    int id = Convert.ToInt16(Request.QueryString["alunoID"]);
+    Aluno objal = new AlunoBO().BuscarAluno(id);
+
+
+    if (IsPost)
+    {
+        objal.AlunoID =Convert.ToInt16( Request.Form["hfAlunoID"]);
+        objal.Nome = Request.Form["txtNome"];
+        objal.Matricula = Request.Form["txtMatricula"];
+        objal.Cpf = Request.Form["txtCPF"];
+        objal.Email = Request.Form["txtEmail"];
+
+
+        bool sucesso = new AlunoBO().Gravar(objal);
+
+        if (sucesso)
+        {
+            Page.msgSucesso = "Aluno salvo com sucesso!";
+            <div class="alert alert-success" role="alert">
+                @Page.msgSucesso
+            </div>
+        }
+        else
+        {
+            Page.msgErro = "Erro ao gravar o aluno";
+            <div class="alert alert-danger " role="alert">
+                @Page.msgErro
+            </div>
+        }
+    }
+
+
+}
+
+   
+<div class="row">
+<h1>  Alterar Aluno   </h1>
+
+</div>
+
+<form method="post"  action="" >
+    <div class="row">
+        <div class="col-6">
+            <input type="hidden" id="hfAlunoID" name="hfAlunoID" value="@objal.AlunoID" />
+            <label>Nome:</label>
+            <input type="text" name="txtNome" id="txtNome" class="form-control" value="@objal.Nome" />
+
+        </div>
+
+        <div class="col-6">
+
+            <label>Matricula:</label>
+            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" value="@objal.Matricula" />
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <value> CPF: </value>
+            <input type="text" name="txtCPF" id="txtCPF" class="form-control"  value="@objal.Cpf"/>
+        </div>
+
+        <div class="col-6">
+
+
+            <label> Email: </label>
+            <input type="email" name="txtEmail" id="txtEmail" class="form-control" value="@objal.Email" />
+
+        </div>
+
+
+    </div>
+
+
+
+    <br />
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <input type="submit" id="btnSalvar" value="SALVAR" class="btn btn btn-success" />
+
+        </div>
+
+    </div>
+
+
+</form>

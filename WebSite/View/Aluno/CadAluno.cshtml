@@ -1,0 +1,116 @@
+﻿
+
+@using WebSite.App_Code.Model;
+@using WebSite.App_Code.BO;
+
+
+@{
+    Page.Title = "Cadastro de Alunos";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    if (IsPost)
+    {
+        Aluno objaluno = new Aluno();
+        objaluno.Nome = Request.Form["txtNome"];
+        objaluno.Matricula = Request.Form["txtMatricula"];
+        objaluno.Cpf = Request.Form["txtCPF"];
+        objaluno.Email = Request.Form["txtEmail"];
+
+
+        bool sucesso = new AlunoBO().Gravar(objaluno);
+
+        if (sucesso)
+        {
+            Page.msgSucesso = "Aluno salvo com sucesso!";
+            <div class="alert alert-success" role="alert">
+                @Page.msgSucesso
+            </div>
+        }
+        else
+        {
+            Page.msgErro = "Erro ao gravar o aluno";
+            <div class="alert alert-danger " role="alert">
+                @Page.msgErro
+            </div>
+        }
+    }
+
+
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <a href="~/View/Aluno/AlunosCadastrados.cshtml" class="btn btn-info" id="btnAlunosCadastrados">Alunos Cadastrados </a>  
+      
+    </div>
+
+</div>
+
+<div class="row">
+    <h1>   Cadastro de Aluno  </h1>
+    
+</div>
+
+
+    <form method="post" name="frmCadAluno" action=""  onsubmit="return validar()"  >
+        <div class="row">
+            <div class="col-6">
+                <label>Nome:</label>
+                <input type="text" name="txtNome" id="txtNome" class="form-control" />
+                 
+            </div>
+            
+            <div class="col-6">
+
+                <label>Matricula:</label>
+                <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
+
+            </div>
+
+            
+            
+             
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+
+                <value> CPF: </value>
+                <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
+            </div>
+
+            <div class="col-6">
+
+
+                <label> Email: </label>
+                <input type="email" name="txtEmail" id="txtEmail"   class="form-control"/>
+
+            </div>
+
+
+        </div>
+        
+       
+        
+        <br/>
+
+        <div class="row">
+
+            <div class="col-12">
+
+            <input type="submit" id="btnSalvar" value="SALVAR" class="btn btn btn-success"     /> 
+
+            </div>
+
+        </div>
+
+      
+    </form>
+    
+
+
+
+
+

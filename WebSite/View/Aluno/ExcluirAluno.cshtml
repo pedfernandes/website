@@ -1,0 +1,15 @@
+﻿@using WebSite.App_Code.BO;
+@using WebSite.App_Code.Model;
+
+@{
+   
+
+
+    int alunoID = Convert.ToInt32(Request.QueryString["alunoID"]);
+    var x = alunoID;
+    new AlunoBO().Excluir(alunoID);
+
+}
+
+
+

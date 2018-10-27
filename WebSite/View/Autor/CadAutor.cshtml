@@ -1,0 +1,60 @@
+﻿@using WebSite.App_Code.BO;
+@using WebSite.App_Code.Model;
+
+@{
+    Page.Title = "Cadastro de Autor";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    if (IsPost)
+    {
+
+        Autor at = new Autor();
+        at.Nome = Request.Form["txtNome"];
+        at.Sexo = Convert.ToChar( Request.Form["rbSexo"]);
+
+        new AutorBO().Gravar(at); 
+
+    }
+
+}
+
+<div class="row">
+    <h1>   Cadastro de Autor  </h1>
+
+</div>
+
+<form method="post" action="" name="frmCadAutor" onsubmit="return validarAutor()" >
+    
+ 
+
+    <div class="row">
+        <div class="col-6" >
+            <label>Nome:</label>
+            <input type="text" class="form-control" name="txtNome"  id="txtNome"/>
+             
+        </div>
+      
+        <div class="col-6">
+            <label>Sexo:</label>
+            <br />
+            <input type="radio"   name="rbSexo" id="rbMasculino" value="M" /><label>Masculino</label>
+            <input type="radio" name="rbSexo" id="rbFeminino" value="F"  /><label>Feminino</label>
+
+        </div>
+
+    </div>
+    
+    <br />
+    <div class="row">
+
+        <div class="col-12" >
+            
+            <input type="submit" class="btn btn-success" name="btnSalvar" id="btnSalvar" value="SALVAR  " /> 
+             
+        </div>
+
+
+    </div>
+    
+      
+</form>

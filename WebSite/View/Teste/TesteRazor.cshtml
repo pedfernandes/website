@@ -1,0 +1,45 @@
+﻿
+
+@*<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        @{ 
+
+            string[] vetEscolaridade = { "Fundamental", "Médio", "Superior" };
+            double nota1= 2 , nota2 = 3, nota3 = 1;
+            
+            var media = nota1 + nota2 + nota3 / 3;
+
+        }
+
+
+
+    </title>
+</head>
+<body>
+
+   @foreach (var item in vetEscolaridade)
+   {
+
+       <p> @item </p>
+
+   }
+
+    @if (@media > 6)
+    {
+        <p style="color:greenyellow" > Aprovado</p>
+    }
+    else
+    {
+        <p style="color:red" > Reprovado</p>
+    }
+
+
+    <div>
+    
+    </div>
+</body>
+</html>*@
